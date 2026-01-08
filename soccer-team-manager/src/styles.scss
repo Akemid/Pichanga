@@ -1,0 +1,112 @@
+/* You can add global styles to this file, and also import other style files */
+
+@use '@angular/material' as mat;
+
+/* Tailwind CSS directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@include mat.core();
+
+// Define the theme object.
+$soccer-team-manager-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$azure-palette,
+    tertiary: mat.$rose-palette,
+  ),
+  density: (
+    scale: 0,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+:root {
+  @include mat.all-component-themes($soccer-team-manager-theme);
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Custom layer for Angular Material + Tailwind integration */
+@layer base {
+  /* Base typography and spacing */
+  html {
+    @apply text-base;
+  }
+
+  body {
+    @apply bg-material-background text-material-on-background;
+  }
+}
+
+@layer components {
+  /* Ensure Material components work well with Tailwind utilities */
+  .mat-mdc-card {
+    @apply shadow-material-2 rounded-material-lg;
+  }
+
+  .mat-mdc-button {
+    @apply transition-all duration-200 rounded-material;
+  }
+
+  .mat-mdc-form-field {
+    @apply w-full;
+  }
+
+  .mat-mdc-table {
+    @apply shadow-material-1;
+  }
+
+  .mat-mdc-dialog-container {
+    @apply rounded-material-xl shadow-material-4;
+  }
+
+  /* Custom utility classes for soccer theme */
+  .soccer-card {
+    @apply bg-white rounded-material-lg shadow-material-2 p-lg;
+  }
+
+  .soccer-button-primary {
+    @apply bg-soccer-primary text-white hover:bg-soccer-field transition-colors duration-200;
+  }
+
+  .soccer-button-secondary {
+    @apply bg-soccer-secondary text-white hover:bg-soccer-secondary/90 transition-colors duration-200;
+  }
+
+  .soccer-field-bg {
+    @apply bg-gradient-to-br from-soccer-field to-soccer-primary;
+  }
+
+  .soccer-text-primary {
+    @apply text-soccer-primary font-medium;
+  }
+
+  .soccer-border {
+    @apply border-soccer-primary border-2;
+  }
+
+  /* Responsive grid utilities */
+  .soccer-grid {
+    @apply grid gap-md;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .soccer-grid-sm {
+    @apply grid gap-sm;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  /* Animation utilities */
+  .soccer-fade-in {
+    @apply animate-pulse;
+  }
+
+  .soccer-hover-lift {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+}

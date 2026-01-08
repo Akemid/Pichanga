@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "name": "Accessibility Style Checker",
+  "description": "Automatically evaluates accessibility compliance when SCSS files are created or when HTML files with Tailwind classes are modified",
+  "version": "1",
+  "when": {
+    "type": "fileCreated",
+    "patterns": [
+      "**/*.scss",
+      "**/*.css",
+      "**/*.html",
+      "**/*.ts",
+      "**/*.tsx",
+      "**/*.jsx"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A style-related file has been created or modified. Please analyze this file for accessibility compliance usign the accesibility mcp, focusing on:\n\n1. Color contrast ratios (WCAG AA/AAA standards)\n2. Focus indicators and keyboard navigation\n3. Screen reader compatibility\n4. Responsive design considerations\n5. Text sizing and readability\n6. Interactive element accessibility\n\nIf this is an HTML/template file, pay special attention to Tailwind classes and inline styles. If this is a SCSS/CSS file, analyze the styling rules for accessibility issues.\n\nProvide specific recommendations for improving accessibility if any issues are found."
+  }
+}
